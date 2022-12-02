@@ -1,8 +1,9 @@
 
 public class VodaMobileRecharge implements service {
-	public  double cost = 10;
-	
-	
+
+	public VodaMobileRecharge(){
+
+	}
 	@Override
 	public boolean pay(User user) {
 		// TODO Auto-generated method stub
