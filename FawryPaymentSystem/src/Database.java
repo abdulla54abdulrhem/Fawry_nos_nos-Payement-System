@@ -12,4 +12,14 @@ public class Database {
         }
         return instance;
     }
+    public void addUser(User user){
+        users.add(user);
+    }
+    public void addService(service service){
+        services.add(service);
+    }
+    public void deleteService(service service){
+        services.remove(service);
+    }
+
 }
