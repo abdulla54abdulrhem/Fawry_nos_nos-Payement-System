@@ -1,10 +1,11 @@
 import java.sql.Ref;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class User extends UserAbstract{
-	Vector<Transaction>transactions= new Vector<Transaction>();
-    Vector<RefundRequest>refundRequests= new Vector<RefundRequest>();
+	ArrayList<Transaction>transactions= new ArrayList<Transaction>();
+    ArrayList<RefundRequest> refundRequests= new ArrayList<RefundRequest>();
     Wallet wallet=new Wallet();
     Display usermainMenu=new UserOptionDisplay();
     ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();
@@ -15,16 +16,19 @@ public class User extends UserAbstract{
         usermainMenu=new chooseLogInOrSignUpdisplay();
         int option=usermainMenu.displayOption();
         if(option==1){
-            system.login(this);
+            User u=system.login();
+            this.wallet=u.wallet;
+            this.transactions=u.transactions;
+            this.refundRequests=u.refundRequests;
+            this.email=u.email;
+            this.password=u.password;
+            this.username=u.username;
         }else if(option==2){
             system.register(this);
         }
         tempFactoryforDisplays();
     }
-    void login(){
-        system.login(this);
 
-    }
 
 
 

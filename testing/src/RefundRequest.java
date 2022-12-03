@@ -1,6 +1,6 @@
 public class RefundRequest {
     RefundRequestDisplay refundDisplay=new RefundRequestDisplay();
-    private String refundDescription=null;
+    public String refundDescription=null;
     double whereIsMyMoney;
     public RefundRequest(){
         refundDescription= refundDisplay.getRefundDescription();

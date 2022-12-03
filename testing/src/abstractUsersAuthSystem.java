@@ -1,23 +1,22 @@
 import java.util.Scanner;
 
 public class abstractUsersAuthSystem {
-    void login(UserAbstract userAbstract){
+    User login(){
         while (true){
             System.out.println("enter email:");
             String tmp= new Scanner(System.in).next();
             System.out.println("enter password:");
             String tmp2=new Scanner(System.in).next();
-            for (UserAbstract u:Database.getInstance().users) {
-                if(tmp==u.email&&tmp2==u.password){
-                    userAbstract=u;
-                    System.out.println("welcome"+userAbstract.username);
-                    return;
+            for (User u:Database.getInstance().users) {
+                if(tmp.equals(u.email)&&tmp2.equals(u.password)){
+                    System.out.println("welcome"+ u.username);
+                    return u;
                 }
             }
             System.out.println("error: no match found");
         }
     }
-    void register(UserAbstract userAbstract){
+    void register(User user){
         while (true){
             System.out.println("enter user-name:");
             String tmp1=new Scanner(System.in).next();
@@ -33,11 +32,11 @@ public class abstractUsersAuthSystem {
                 }
             }
             if(ok){
-                userAbstract.email=tmp2;
-                userAbstract.password=tmp3;
-                userAbstract.username=tmp1;
-                System.out.println("registerd as "+userAbstract.username);
-                Database.getInstance().users.add(userAbstract);
+                user.email=tmp2;
+                user.password=tmp3;
+                user.username=tmp1;
+                System.out.println("registerd as "+user.username);
+                Database.getInstance().users.add((User) user);
                 return;
             }else {
                 System.out.println("error: email or password already exists");

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Database {
     static private Database instance=null;
-    ArrayList<UserAbstract> users=new ArrayList<UserAbstract>();
+    ArrayList<User> users=new ArrayList<User>();
     ArrayList<service> services=new ArrayList<service>();
     ArrayList<String> discountsDescriptions=new ArrayList<String>();
     //wow
