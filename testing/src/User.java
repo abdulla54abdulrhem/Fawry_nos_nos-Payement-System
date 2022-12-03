@@ -61,7 +61,7 @@ public class User extends UserAbstract{
                     transactions.add(new Transaction(this.email,ser.description,ser.cost));
                     transactions.get(0).getInformaion();
                 }else {
-                    System.out.println("failed\n");
+                    System.out.println("failed, no enough balance\n");
                 }
 
 
