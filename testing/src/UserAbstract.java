@@ -1,7 +1,9 @@
-public class UserAbstract {
+public abstract class UserAbstract {
     String email;
     String password;
+    String username;
     SignUpDisplay signupDisplay= new SignUpDisplay();
+    abstractUsersAuthSystem system=new abstractUsersAuthSystem();
     public UserAbstract(){
     }
     public void setEmail(){

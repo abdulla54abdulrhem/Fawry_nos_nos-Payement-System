@@ -2,8 +2,12 @@ import java.util.ArrayList;
 
 public class Database {
     static private Database instance=null;
-    ArrayList<User> users=new ArrayList<User>();
+    ArrayList<UserAbstract> users=new ArrayList<UserAbstract>();
     ArrayList<service> services=new ArrayList<service>();
+    //wow
+    //the bank gave me the cards database
+    //cool!!!
+    ArrayList<creditCard> cards=new ArrayList<creditCard>();
 
     private Database(){}
     public static Database getInstance() {

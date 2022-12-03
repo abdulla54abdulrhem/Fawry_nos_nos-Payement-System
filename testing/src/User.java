@@ -11,8 +11,26 @@ public class User extends UserAbstract{
     ServiceFactory servicefactory;
     service ser;
     Scanner sc=new Scanner(System.in);
-    public User(){}
+    public User(){
+        usermainMenu=new chooseLogInOrSignUpdisplay();
+        int option=usermainMenu.displayOption();
+        if(option==1){
+            system.login(this);
+        }else if(option==2){
+            system.register(this);
+        }
+        tempFactoryforDisplays();
+    }
+    void login(){
+        system.login(this);
+
+    }
+
+
+
+
     public void tempFactoryforDisplays(){
+        usermainMenu=new UserOptionDisplay();
         while (true){
             int option1=usermainMenu.displayOption();
             if(option1==1){
@@ -47,8 +65,8 @@ public class User extends UserAbstract{
                 }
 
 
-            }else if(option1==0){
-                break;
+            }else if(option1==7){
+                return;
             }
         }
 
