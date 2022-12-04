@@ -1,12 +1,15 @@
 
 public class OrangeMobileRecharge extends service {
-	public  double cost = 10;
-	
-	
-	@Override
-	public boolean pay(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	private OrangeMobileRecharge(){
+		description="OrangeMobileRecharge service";
+		cost=10;
+	}
+	static private service instance=null;
+	public static service getInstance(){
+		if(instance==null){
+			instance=new OrangeMobileRecharge();
+		}
+		return instance;
 	}
 
 }

@@ -1,11 +1,16 @@
 
 public class Donation extends service {
 	//hospital
-	public double cost=50;
-	@Override
-	public boolean pay(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	private Donation(){
+		cost=100;
+		description="Hospital Donation";
+	}
+	static private service instance=null;
+	public static service getInstance(){
+		if(instance==null){
+			instance=new Donation();
+		}
+		return instance;
 	}
 
 }

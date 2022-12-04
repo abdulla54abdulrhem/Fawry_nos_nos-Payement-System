@@ -4,13 +4,14 @@ public class Database {
     static private Database instance=null;
     ArrayList<User> users=new ArrayList<User>();
     ArrayList<service> services=new ArrayList<service>();
+    String generalDiscountData="added General Discount 0%";
     ArrayList<String> discountsDescriptions=new ArrayList<String>();
     //wow
     //the bank gave me the cards database
     //cool!!!
     ArrayList<creditCard> cards=new ArrayList<creditCard>();
-    DiscountSubject generalDiscount=new GeneralDiscount();
-    DiscountSubject specificDiscount=new SpecificDiscount();
+    public DiscountSubject generalDiscount=new GeneralDiscount();
+    public DiscountSubject specificDiscount=new SpecificDiscount();
     private Database(){}
     public static Database getInstance() {
         if(instance==null){
@@ -30,17 +31,19 @@ public class Database {
         services.remove(service);
     }
     public void showServices(){
-        for(service ser:services){
-            System.out.println(ser.getDescription()+" Costs: "+ser.getCost()+" EGP");
+        for(int i=0;i<services.size();i++){
+            System.out.println(i+"- "+services.get(i).getDescription()+" Costs: "+services.get(i).getCost()+" EGP, Cost after discounts: "+services.get(i).getCostAfterDiscounts()+" EGP");
         }
+
     }
     public void addGeneralDiscountDiscription(double discount){
-        discountsDescriptions.add("added General Discount "+discount*100+"%");
+        generalDiscountData=("added General Discount "+discount*100+"%");
     }
     public void addSpecificDiscountDescription(String description,double discount){
         discountsDescriptions.add("Added discount to: "+description+" "+discount*100+"%");
     }
     public void showDiscounts(){
+        System.out.println(generalDiscountData);
         for(String dis:discountsDescriptions){
             System.out.println(dis);
         }

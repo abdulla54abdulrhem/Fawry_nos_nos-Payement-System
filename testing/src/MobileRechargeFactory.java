@@ -5,16 +5,16 @@ public class MobileRechargeFactory extends ServiceFactory{
     public service chooseService(){
         option=display.displayOption();
         if(option==1){
-            return new VodaMobileRecharge();
+            return VodaMobileRecharge.getInstance();
         }
         else if(option==2){
-            return new WeMobileRecharge();
+            return  WeMobileRecharge.getInstance();
         }
         else if(option==3){
-            return new OrangeMobileRecharge();
+            return  OrangeMobileRecharge.getInstance();
         }
         else{
-            return new EtisalatMobileRecharge();
+            return  EtisalatMobileRecharge.getInstance();
         }
     }
 }

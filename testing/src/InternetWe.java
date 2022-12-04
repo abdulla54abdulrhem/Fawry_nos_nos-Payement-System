@@ -1,11 +1,14 @@
 
 public class InternetWe extends service {
-	public double cost =20;
-
-	@Override
-	public boolean pay(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	private InternetWe(){
+		description="We Internet Receipt";
+		cost=150;
 	}
-
+	static private service instance=null;
+	public static service getInstance(){
+		if(instance==null){
+			instance=new InternetWe();
+		}
+		return instance;
+	}
 }

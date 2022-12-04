@@ -5,16 +5,16 @@ public class InternetRechargeFactory extends ServiceFactory{
     public service chooseService(){
         option=display.displayOption();
         if(option==1){
-            return new InternetVodafone();
+            return InternetVodafone.getInstance();
         }
         else if(option==2){
-            return new InternetWe();
+            return  InternetWe.getInstance();
         }
         else if(option==3){
-            return new InternetOrange();
+            return InternetOrange.getInstance();
         }
         else{
-            return new InternetEtisalat();
+            return InternetEtisalat.getInstance();
         }
     }
 }

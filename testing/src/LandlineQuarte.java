@@ -1,11 +1,15 @@
 
 public class LandlineQuarte extends service {
-	public double cost =20;
-
-	@Override
-	public boolean pay(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	private LandlineQuarte(){
+		description="Landline Quarter Receipt";
+		cost=400;
+	}
+	static private service instance=null;
+	public static service getInstance(){
+		if(instance==null){
+			instance=new LandlineQuarte();
+		}
+		return instance;
 	}
 
 }

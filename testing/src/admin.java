@@ -28,7 +28,17 @@ public class admin extends UserAbstract{
         while (true){
             int option=new AdminMainMenu().displayOption();
             if(option==1){
-                //todo: add discounts
+                Display display=new DiscountOptionsDisplay();
+                int option1=display.displayOption();
+                if(option1==1){
+                    Database.getInstance().generalDiscount.addDiscount();
+                }
+                else{
+                    Display specificService=new ChooseSpecifictoDiscountDisplay();
+                    int serviceoption= specificService.displayOption();
+                    Database.getInstance().specificDiscount.registerObserver(Database.getInstance().services.get(serviceoption));
+                    Database.getInstance().specificDiscount.addDiscount();
+                }
             }else if(option==2) {
                 boolean returnTomenu=false;
                 //important: not sure if this a copy or refrence

@@ -5,10 +5,10 @@ public class LandLineFactory extends ServiceFactory{
     public service chooseService(){
         option=display.displayOption();
         if(option==1){
-            return new landlineMonthly();
+            return landlineMonthly.getInstance();
         }
         else{
-            return new LandlineQuarte();
+            return LandlineQuarte.getInstance();
         }
     }
 }

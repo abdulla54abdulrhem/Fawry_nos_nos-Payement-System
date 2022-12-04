@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -46,10 +47,10 @@ public class User extends UserAbstract{
                 wallet.addMoney(money);
             }
             else if(option1==3){
-                //show services available in the system
+                Database.getInstance().showServices();
             }
             else if(option1==4){
-                //show discounts in the system
+                Database.getInstance().showDiscounts();
             }
             else if(option1==5){
                 //make refund request

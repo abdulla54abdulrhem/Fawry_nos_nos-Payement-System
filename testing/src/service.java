@@ -8,7 +8,17 @@ public abstract class service implements Observer{
 	Display serviceDisplay = null;
     User currentUser=null;
 
-	abstract boolean pay(User user);
+	public boolean pay(User user) {
+		// TODO Auto-generated method stub
+		double moneyTobePaid=getCostAfterDiscounts();
+		if(user.wallet.getBalance()<moneyTobePaid){
+			return false;
+		}else {
+			user.wallet.deductMoney(moneyTobePaid);
+			return true;
+		}
+
+	}
 	public void updateDiscount(double discount){
 		this.discountGeneral=discount;
 	}
@@ -18,6 +28,7 @@ public abstract class service implements Observer{
 	public double getCost(){
 		return this.cost;
 	}
+	public double getCostAfterDiscounts(){return this.cost-(this.cost*this.discountGeneral+this.cost*discountSpecific);}
 	public String getDescription(){
 		return this.description;
 	}

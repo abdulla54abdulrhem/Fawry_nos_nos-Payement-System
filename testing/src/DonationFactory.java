@@ -5,13 +5,13 @@ public class DonationFactory extends ServiceFactory{
     public service chooseService(){
         option=display.displayOption();
         if(option==1){
-            return new Donation();
+            return Donation.getInstance();
         }
         else if(option==2){
-            return new SchoolDonation();
+            return  SchoolDonation.getInstance();
         }
         else {
-            return new NGOsDonation();
+            return  NGOsDonation.getInstance();
         }
 
     }
