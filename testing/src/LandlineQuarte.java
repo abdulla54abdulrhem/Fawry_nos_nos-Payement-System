@@ -1,7 +1,7 @@
 
 public class LandlineQuarte extends service {
 	private LandlineQuarte(){
-		description="Landline Quarter Receipt";
+		description="Landline Quarter Receipt.";
 		cost=400;
 	}
 	static private service instance=null;

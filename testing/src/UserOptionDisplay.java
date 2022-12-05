@@ -4,7 +4,7 @@ public class UserOptionDisplay extends Display{
         System.out.println("User Options Menu");
         System.out.println("1- Show My Wallet Balance");
         System.out.println("2- Add money to my wallet");
-        System.out.println("3- Show Services available");
+        System.out.println("3- Search Services available");
         System.out.println("4- Show discounts available");
         System.out.println("5- make refund request");
         System.out.println("6- use services");

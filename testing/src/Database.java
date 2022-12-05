@@ -34,6 +34,13 @@ public class Database {
         }
 
     }
+    public void showMatchingServices(String s){
+        for(int i=0;i<services.size();i++){
+            if(services.get(i).description.contains(s)){
+                System.out.println(i+"- "+services.get(i).getDescription()+" Costs: "+services.get(i).getCost()+" EGP, Cost after discounts: "+services.get(i).getCostAfterDiscounts()+" EGP");
+            }
+        }
+    }
     public void addGeneralDiscountDiscription(double discount){
         generalDiscountData=("added General Discount "+discount*100+"%");
     }

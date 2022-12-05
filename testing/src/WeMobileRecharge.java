@@ -1,7 +1,7 @@
 
 public class WeMobileRecharge extends service {
 	private WeMobileRecharge(){
-		description="WeMobileRecharge service";
+		description="WeMobileRecharge service.";
 		cost=12;
 	}
 	static private service instance=null;

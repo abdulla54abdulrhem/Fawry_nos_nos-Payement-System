@@ -1,7 +1,7 @@
 
 public class InternetWe extends service {
 	private InternetWe(){
-		description="We Internet Receipt";
+		description="We Internet Receipt.";
 		cost=150;
 	}
 	static private service instance=null;

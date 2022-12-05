@@ -2,7 +2,7 @@
 public class VodaMobileRecharge extends service {
 
 	private VodaMobileRecharge(){
-		description="VodaMobileRecharge service";
+		description="VodaMobileRecharge service.";
 		cost=10;
 	}
 	static private service instance=null;

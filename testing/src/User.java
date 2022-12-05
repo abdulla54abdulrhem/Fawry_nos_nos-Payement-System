@@ -51,7 +51,10 @@ public class User extends UserAbstract{
             }
             else if(option1==3){
                 //showing services
-                Database.getInstance().showServices();
+                System.out.println("enter search word: IMPORTANT: type a dot to show all ---> .");
+                System.out.println("note: upper case letters and lower case letter are considered different");
+                String s=sc.next();
+                Database.getInstance().showMatchingServices(s);
             }
             else if(option1==4){
                 //showing discounts

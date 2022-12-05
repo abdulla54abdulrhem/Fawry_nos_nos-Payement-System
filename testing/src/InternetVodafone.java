@@ -1,6 +1,6 @@
 public class InternetVodafone extends service {
     private InternetVodafone(){
-        description="Vodafone Internet Receipt";
+        description="Vodafone Internet Receipt.";
         cost=160;
     }
     static private service instance=null;

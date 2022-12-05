@@ -1,7 +1,7 @@
 
 public class NGOsDonation extends service {
 	private NGOsDonation(){
-		description="NGOs Donation service: ";
+		description="NGOs Donation service. ";
 		cost=500;
 	}
 	static private service instance=null;

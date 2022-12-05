@@ -1,7 +1,7 @@
 
 public class OrangeMobileRecharge extends service {
 	private OrangeMobileRecharge(){
-		description="OrangeMobileRecharge service";
+		description="OrangeMobileRecharge service.";
 		cost=10;
 	}
 	static private service instance=null;

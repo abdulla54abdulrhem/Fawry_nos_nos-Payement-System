@@ -1,7 +1,7 @@
 
 public class EtisalatMobileRecharge extends service {
 	private EtisalatMobileRecharge(){
-		description="Etisalat Mobile recharge service";
+		description="Etisalat Mobile recharge service.";
 		cost=12;
 	}
 	static private service instance=null;
