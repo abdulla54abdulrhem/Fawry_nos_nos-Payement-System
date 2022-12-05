@@ -21,7 +21,5 @@ public class SpecificDiscount implements DiscountSubject{
         //System.out.println(discount);
         notifyObserver();
     }
-    public void setObserver(Observer o){
-        observer=o;
-    }
+
 }

@@ -9,7 +9,7 @@ public class Database {
     //wow
     //the bank gave me the cards database
     //cool!!!
-    ArrayList<creditCard> cards=new ArrayList<creditCard>();
+
     public DiscountSubject generalDiscount=new GeneralDiscount();
     public DiscountSubject specificDiscount=new SpecificDiscount();
     private Database(){}
@@ -27,9 +27,7 @@ public class Database {
         //to add make the service and observer in the general discount
         generalDiscount.registerObserver(service);
     }
-    public void deleteService(service service){
-        services.remove(service);
-    }
+
     public void showServices(){
         for(int i=0;i<services.size();i++){
             System.out.println(i+"- "+services.get(i).getDescription()+" Costs: "+services.get(i).getCost()+" EGP, Cost after discounts: "+services.get(i).getCostAfterDiscounts()+" EGP");

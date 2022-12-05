@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class UserOptionDisplay extends Display{
     public UserOptionDisplay(){}
     public int displayOption(){

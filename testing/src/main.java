@@ -3,10 +3,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class main {
     public static void main(String []args){
-//        User user=new User();
-//        user.tempFactoryforDisplays();
         //initialize our database
-        //Todo: create all services and add to database
 
         Database.getInstance().addService(VodaMobileRecharge.getInstance());
         Database.getInstance().addService(EtisalatMobileRecharge.getInstance());
@@ -21,6 +18,8 @@ public class main {
         Database.getInstance().addService(SchoolDonation.getInstance());
         Database.getInstance().addService(NGOsDonation.getInstance());
         Database.getInstance().addService(Donation.getInstance());
+
+        //actual start of our program
         Display display=new startDisplay();
         UserAbstract userAbstract;
         while(true){

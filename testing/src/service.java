@@ -1,12 +1,10 @@
-
+import java.math.*;
 public abstract class service implements Observer{
 	double cost = 0;
 	boolean cashOnDelivery=false;
 	String description="";
 	double discountGeneral=0;
 	double discountSpecific=0;
-	Display serviceDisplay = null;
-    User currentUser=null;
 
 	public boolean pay(User user) {
 		// TODO Auto-generated method stub
@@ -14,7 +12,7 @@ public abstract class service implements Observer{
 		if(user.wallet.getBalance()<moneyTobePaid){
 			return false;
 		}else {
-			user.wallet.deductMoney(moneyTobePaid);
+			user.wallet.deductMoney(Math.max(0,moneyTobePaid));
 			return true;
 		}
 

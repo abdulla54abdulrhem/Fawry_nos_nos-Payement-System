@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class admin extends UserAbstract{
     admin(){
+        //initializing admin
         email="admin@gmail.com";
         password="1234";
         username="admin";
