@@ -3,7 +3,7 @@ public abstract class UserAbstract {
     String password;
     String username;
 
-    abstractUsersAuthSystem system=new abstractUsersAuthSystem();
+    UsersAuthSystem system=new UsersAuthSystem();
     public UserAbstract(){
     }
 }

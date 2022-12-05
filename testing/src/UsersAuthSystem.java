@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class abstractUsersAuthSystem {
+public class UsersAuthSystem {
     User login(){
         while (true){
             System.out.println("enter email:");
