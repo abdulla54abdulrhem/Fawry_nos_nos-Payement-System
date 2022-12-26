@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Database {
     static private Database instance=null;
+    admin myAdmin;
     ArrayList<User> users=new ArrayList<User>();
     ArrayList<service> services=new ArrayList<service>();
     String generalDiscountData="added General Discount 0%";

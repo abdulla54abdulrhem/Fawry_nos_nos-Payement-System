@@ -2,7 +2,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class User extends UserAbstract{
+public class User extends UserAbstract implements SubjectUser{
+    static  int ids=0;
+    public int ThisId;
+    ArrayList<ObserverAdmin>observerAdmins= new ArrayList<ObserverAdmin>();
 	ArrayList<Transaction>transactions= new ArrayList<Transaction>();
     ArrayList<RefundRequest> refundRequests= new ArrayList<RefundRequest>();
     Wallet wallet=new Wallet();
@@ -15,7 +18,7 @@ public class User extends UserAbstract{
         usermainMenu=new chooseLogInOrSignUpdisplay();
         int option=usermainMenu.displayOption();
         if(option==1){
-            //login in
+            //login
             User u=system.login();
             this.wallet=u.wallet;
             this.transactions=u.transactions;
@@ -23,10 +26,14 @@ public class User extends UserAbstract{
             this.email=u.email;
             this.password=u.password;
             this.username=u.username;
+            this.ThisId=u.ThisId;
+            Database.getInstance().users.add(this);
         }else if(option==2){
             //register new user
             system.register(this);
         }
+        //getting the admin from database (the user object needs him to send refund requests)
+        this.registerAdmin(Database.getInstance().myAdmin);
         // i think that method name describes it very well (no need for comment)
         startUserFunctions();
     }
@@ -62,8 +69,8 @@ public class User extends UserAbstract{
             }
             else if(option1==5){
                 //make refund request
-                RefundRequest r=new RefundRequest();
-                refundRequests.add(r);
+                RefundRequest r=new RefundRequest(this);
+                notifyObserver(r);
             }
             else if(option1==6){
                 // paying for a service
@@ -87,6 +94,28 @@ public class User extends UserAbstract{
                 return;
             }
         }
+
+    }
+//doing the observer pattern four functions
+    @Override
+    public void registerAdmin(ObserverAdmin a) {
+        this.observerAdmins.add(a);
+    }
+
+    @Override
+    public void removeObserver(ObserverAdmin a) {
+        this.observerAdmins.remove(a);
+    }
+
+    @Override
+    public void notifyObserver(RefundRequest r) {
+        for (ObserverAdmin observerAdmin:this.observerAdmins) {
+            observerAdmin.notifyAdmin(r);
+        }
+    }
+
+    @Override
+    public void addRefundRequest() {
 
     }
 }

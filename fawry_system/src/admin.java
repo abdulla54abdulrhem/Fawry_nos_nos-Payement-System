@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class admin extends UserAbstract{
+public class admin extends UserAbstract implements ObserverAdmin {
+    ArrayList<RefundRequest> refundRequests=new ArrayList<RefundRequest>();
     admin(){
         //initializing admin
         email="admin@gmail.com";
         password="1234";
         username="admin";
-        login();
-        startAdminFunctions();
     }
     void login(){
         while (true){
@@ -26,6 +25,7 @@ public class admin extends UserAbstract{
     }
 
     void startAdminFunctions(){
+        login();
         while (true){
             int option=new AdminMainMenu().displayOption();
             if(option==1){
@@ -43,32 +43,34 @@ public class admin extends UserAbstract{
             }else if(option==2) {
                 boolean returnTomenu=false;
                 //important: not sure if this a copy or refrence
-                for (User u:Database.getInstance().users) {
-                    ArrayList<RefundRequest> tobeDeleted=new ArrayList<RefundRequest>();
-                    for (RefundRequest refund:u.refundRequests) {
+                    ArrayList<RefundRequest>tobeDeleted=new ArrayList<RefundRequest>();
+                    for (RefundRequest refund:this.refundRequests) {
+                        System.out.println("user: "+refund.user.username);
+                        System.out.println("email: "+refund.user.email);
                         System.out.println(refund.refundDescription);
                         System.out.println("requested: "+refund.whereIsMyMoney);
                         int refundOption=new chooseToRefundDisplay().displayOption();
                         if(refundOption==1){
-                            u.wallet.addMoney(refund.whereIsMyMoney);
+                            //give him his money
+                            refund.user.wallet.addMoney(refund.whereIsMyMoney);
                             tobeDeleted.add(refund);
 //                            u.refundRequests.remove(refund);
-                            System.out.println("successfull\nmoney after: "+ u.wallet.getBalance());
+                            System.out.println("successfull\nmoney after: "+ refund.user.wallet.getBalance());
                         }else if(refundOption==2){
                             tobeDeleted.add(refund);
-//                            u.refundRequests.remove(refund);
                         }else if(refundOption==3){
                             returnTomenu=true;
                             break;
                         }
                     }
                     for (RefundRequest deleteThis: tobeDeleted) {
-                        u.refundRequests.remove(deleteThis);
+                        this.refundRequests.remove(deleteThis);
                     }
+                    tobeDeleted.clear();
                     if(returnTomenu){
                         break;
                     }
-                }
+
             }else if(option==3){
                 break;
             }
@@ -76,4 +78,8 @@ public class admin extends UserAbstract{
 
     }
 
+    @Override
+    public void notifyAdmin(RefundRequest r) {
+        this.refundRequests.add(r);
+    }
 }

@@ -10,6 +10,7 @@ public class UsersAuthSystem {
             for (User u:Database.getInstance().users) {
                 if(tmp.equals(u.email)&&tmp2.equals(u.password)){
                     System.out.println("welcome"+ u.username);
+                    Database.getInstance().users.remove(u);
                     return u;
                 }
             }
@@ -35,8 +36,10 @@ public class UsersAuthSystem {
                 user.email=tmp2;
                 user.password=tmp3;
                 user.username=tmp1;
+                user.ThisId=User.ids;
+                User.ids=User.ids+1;
                 System.out.println("registerd as "+user.username);
-                Database.getInstance().users.add((User) user);
+                Database.getInstance().users.add(user);
                 return;
             }else {
                 System.out.println("error: email or password already exists");
