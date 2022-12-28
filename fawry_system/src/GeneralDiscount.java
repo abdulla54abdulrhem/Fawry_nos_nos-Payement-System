@@ -16,8 +16,8 @@ public class GeneralDiscount implements DiscountSubject{
             ob.updateDiscount(discount);
         }
     }
-    public void addDiscount(){
-        int dis=display.displayOption();
+    public void addDiscount(int dis){
+//        int dis=display.displayOption();
         discount=(dis/100.0);
         Database.getInstance().addGeneralDiscountDiscription(discount);
         //System.out.println(discount);

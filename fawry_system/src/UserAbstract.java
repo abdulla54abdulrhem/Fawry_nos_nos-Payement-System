@@ -6,4 +6,5 @@ public abstract class UserAbstract {
     UsersAuthSystem system=new UsersAuthSystem();
     public UserAbstract(){
     }
+    abstract boolean login(String logingEmail, String logingPassword);
 }

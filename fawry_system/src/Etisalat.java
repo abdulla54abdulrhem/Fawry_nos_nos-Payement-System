@@ -1,14 +1,8 @@
 public class Etisalat extends Provider{
-    private Etisalat(){
+    public Etisalat(){
         this.description="Etisalat";
         this.cost=1.0;//the additional cost for the provider
         this.theService=NullService.getInstance();
     }
-    static private service instance=null;
-    public static service getInstance(){
-        if(instance==null){
-            instance=new Etisalat();
-        }
-        return instance;
-    }
+
 }

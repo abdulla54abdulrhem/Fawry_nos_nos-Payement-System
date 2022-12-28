@@ -7,95 +7,109 @@ public class User extends UserAbstract implements SubjectUser{
     public int ThisId;
     ArrayList<ObserverAdmin>observerAdmins= new ArrayList<ObserverAdmin>();
 	ArrayList<Transaction>transactions= new ArrayList<Transaction>();
-    ArrayList<RefundRequest> refundRequests= new ArrayList<RefundRequest>();
+    CustomerController customerController=new CustomerController();
     Wallet wallet=new Wallet();
-    Display usermainMenu;
     ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();
     ServiceFactory servicefactory;
     service ser;
     Scanner sc=new Scanner(System.in);
     public User(){
-        usermainMenu=new chooseLogInOrSignUpdisplay();
-        int option=usermainMenu.displayOption();
-        if(option==1){
-            //login
-            User u=system.login();
-            this.wallet=u.wallet;
-            this.transactions=u.transactions;
-            this.refundRequests=u.refundRequests;
-            this.email=u.email;
-            this.password=u.password;
-            this.username=u.username;
-            this.ThisId=u.ThisId;
-            Database.getInstance().users.add(this);
-        }else if(option==2){
-            //register new user
-            system.register(this);
-        }
         //getting the admin from database (the user object needs him to send refund requests)
         this.registerAdmin(Database.getInstance().myAdmin);
-        // i think that method name describes it very well (no need for comment)
-        startUserFunctions();
+    }
+    //1
+    @Override
+    boolean login(String logingEmail,String logingPassword){
+
+        return system.login(logingEmail,logingPassword, this);
+    }
+    //2
+    boolean register(String loginUsername,String loginEmail,String loginPassword){
+        return system.register(this,loginUsername,loginEmail,loginPassword);
+    }
+    //3
+    double showCurrentBalance(){return wallet.getBalance();}
+    //4
+    //todo:make the credit card thing
+    public void addMoney(double money){
+        wallet.addMoney(money);
+    }
+    //5
+    public void search(String word){
+        customerController.search(word);
+    }
+    //6
+    public ArrayList<String> getDiscounts(){
+        return customerController.getDiscounts();
     }
 
-
-
-
-
-    public void startUserFunctions(){
-        usermainMenu=new UserOptionDisplay();
-        while (true){
-            int option1=usermainMenu.displayOption();
-            if(option1==1){
-                //showing current balance
-                System.out.println("User Balance: "+wallet.getBalance());
-            }
-            else if(option1==2){
-                //adding money via credit card
-                System.out.println("Enter the amount of money to add into wallet: (it's via your credit card) ");
-                double money=sc.nextDouble();
-                wallet.addMoney(money);
-            }
-            else if(option1==3){
-                //showing services
-                System.out.println("enter search word: IMPORTANT: type a dot to show all ---> .");
-                System.out.println("note: upper case letters and lower case letter are considered different");
-                String s=sc.next();
-                Database.getInstance().showMatchingServices(s);
-            }
-            else if(option1==4){
-                //showing discounts
-                Database.getInstance().showDiscounts();
-            }
-            else if(option1==5){
-                //make refund request
-                RefundRequest r=new RefundRequest(this);
-                notifyObserver(r);
-            }
-            else if(option1==6){
-                // paying for a service
-                servicefactory=serviceTypeFactory.chooseMainService();
-                ser=servicefactory.chooseService();
-                double moneyBefore=wallet.getBalance();
-                if(ser.pay(this)){
-                    double moneyAfter=wallet.getBalance();
-                    System.out.println("success\n current balance="+wallet.getBalance());
-                    //important: make function getCost (because of discounts)
-                    transactions.add(new Transaction(this.email,ser.description,moneyBefore-moneyAfter));
-                    transactions.get(transactions.size()-1).getInformaion();
-                }else {
-                    System.out.println("failed, no enough balance\n(if you want to buy via credit card ,just use it to add money to the wallet)\nneeded money: "+ser.cost);
-
-                }
-
-
-            }else if(option1==7){
-                // going back to start display (choose to be admin or user)
-                return;
-            }
-        }
-
+    //7
+    public void makeRefundRequest(String refundDescription,int money){
+        RefundRequest refund=new RefundRequest(this,refundDescription,money);
+        notifyObserver(refund);
     }
+
+    //todo:make the pay function with abdullah
+    boolean pay(int id,int mainServicesNumber,int serviceTypeNumber){
+        return customerController.pay(this,mainServicesNumber,serviceTypeNumber);
+    }
+
+//    public void startUserFunctions(){
+//
+//        while (true){
+//            int option1=5;
+//            if(option1==1){
+//                //
+//                //showing current balance
+//                System.out.println("User Balance: "+showCurrentBalance());
+//            }
+//            else if(option1==2){
+//                //
+//                //adding money via credit card
+//                addMoney(55);
+//            }
+//            else if(option1==3){
+//                //showing services
+//                search("hi");
+//            }
+//            else if(option1==4){
+//                //controller needed
+//                //showing discounts
+//                System.out.println(getDiscounts());
+//            }
+//            else if(option1==5){
+//                //make refund request
+//                makeRefundRequest("hi",0);
+//            }
+//            else if(option1==6){
+//                // paying for a service
+////                servicefactory=serviceTypeFactory.chooseMainService();
+////                ser=servicefactory.chooseService();
+//                double moneyBefore=wallet.getBalance();
+//                if(ser.pay(this)){
+//                    double moneyAfter=wallet.getBalance();
+//                    System.out.println("success\n current balance="+wallet.getBalance());
+//                    //important: make function getCost (because of discounts)
+//                    transactions.add(new Transaction(this.email,ser.description,moneyBefore-moneyAfter));
+//                    transactions.get(transactions.size()-1).getInformaion();
+//                }else {
+//                    System.out.println("failed, no enough balance\n(if you want to buy via credit card ,just use it to add money to the wallet)\nneeded money: "+ser.cost);
+//
+//                }
+//
+//
+//            }else if(option1==7){
+//                // going back to start display (choose to be admin or user)
+//                return;
+//            }
+//        }
+//
+//    }
+
+
+
+
+
 //doing the observer pattern four functions
     @Override
     public void registerAdmin(ObserverAdmin a) {

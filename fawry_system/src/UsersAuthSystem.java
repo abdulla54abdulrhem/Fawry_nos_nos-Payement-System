@@ -1,50 +1,37 @@
 import java.util.Scanner;
 
 public class UsersAuthSystem {
-    User login(){
-        while (true){
-            System.out.println("enter email:");
-            String tmp= new Scanner(System.in).next();
-            System.out.println("enter password:");
-            String tmp2=new Scanner(System.in).next();
+    boolean login(String email,String password,User current){
             for (User u:Database.getInstance().users) {
-                if(tmp.equals(u.email)&&tmp2.equals(u.password)){
+                if(email.equals(u.email)&&password.equals(u.password)){
                     System.out.println("welcome"+ u.username);
                     Database.getInstance().users.remove(u);
-                    return u;
+                    current.wallet=u.wallet;
+                    current.transactions=u.transactions;
+                    current.email=u.email;
+                    current.password=u.password;
+                    current.username=u.username;
+                    current.ThisId=u.ThisId;
+                    Database.getInstance().users.add(current);
+                    return true;
                 }
             }
-            System.out.println("error: no match found");
-        }
+        return false;
     }
-    void register(User user){
-        while (true){
-            System.out.println("enter user-name:");
-            String tmp1=new Scanner(System.in).next();
-            System.out.println("enter email:");
-            String tmp2= new Scanner(System.in).next();
-            System.out.println("enter password:");
-            String tmp3=new Scanner(System.in).next();
-            boolean ok=true;
+    boolean register(User user,String username,String email,String password){
             for (UserAbstract u:Database.getInstance().users) {
-                if(tmp2.equals(u.email)||tmp3.equals(u.password)){
-                    ok=false;
-                    break;
+                if(email.equals(u.email)||password.equals(u.password)){
+                    user.email=email;
+                    user.password=password;
+                    user.username=username;
+                    user.ThisId=User.ids;
+                    User.ids=User.ids+1;
+                    System.out.println("registerd as "+user.username);
+                    Database.getInstance().users.add(user);
+                    return true;
                 }
             }
-            if(ok){
-                user.email=tmp2;
-                user.password=tmp3;
-                user.username=tmp1;
-                user.ThisId=User.ids;
-                User.ids=User.ids+1;
-                System.out.println("registerd as "+user.username);
-                Database.getInstance().users.add(user);
-                return;
-            }else {
-                System.out.println("error: email or password already exists");
-            }
+           return false;
 
-        }
     }
 }

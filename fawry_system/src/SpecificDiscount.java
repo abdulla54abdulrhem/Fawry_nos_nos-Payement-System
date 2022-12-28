@@ -15,8 +15,8 @@ public class SpecificDiscount implements DiscountSubject{
         observer.updateSpecificDiscount(discount);
         Database.getInstance().addSpecificDiscountDescription(observer.getDescription(),discount);
     }
-    public void addDiscount(){
-        int dis=display.displayOption();
+    @Override
+    public void addDiscount(int dis){
         discount=(dis/100.0);
         //System.out.println(discount);
         notifyObserver();

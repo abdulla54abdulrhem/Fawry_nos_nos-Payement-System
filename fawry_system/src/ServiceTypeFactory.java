@@ -1,10 +1,10 @@
 public class ServiceTypeFactory {
-    Display display;
+//    Display display;
     public ServiceTypeFactory(){
-        display= new ChooseMainServicesDisplay();
+
     }
-    public ServiceFactory chooseMainService(){
-        int option=display.displayOption();
+    public ServiceFactory chooseMainService(int option){
+//        int option=display.displayOption();
         if(option==1){
             return new MobileRechargeFactory();
         }
@@ -14,8 +14,9 @@ public class ServiceTypeFactory {
         else if(option==3){
             return new LandLineFactory();
         }
-        else{
+        else if(option==4){
             return new DonationFactory();
         }
+        return null;
     }
 }

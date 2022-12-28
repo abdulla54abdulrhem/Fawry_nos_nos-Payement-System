@@ -2,27 +2,28 @@ public class InternetRechargeFactory extends ServiceFactory{
     public InternetRechargeFactory(){
         display=new ChooseInternetRecharge();
     }
-    public service chooseService(){
-        option=display.displayOption();
+    public service chooseService(int option){
+//        option=display.displayOption();
         if(option==1){
-            Provider voda= (Provider) Vodafone.getInstance();
+            Provider voda= (Provider) new Vodafone();
             voda.addService(InternetRecharge.getInstance());
             return voda;
         }
         else if(option==2){
-            Provider we= (Provider) We.getInstance();
+            Provider we= (Provider)new We();
             we.addService(InternetRecharge.getInstance());
             return we;
         }
         else if(option==3){
-            Provider orange= (Provider) Orange.getInstance();
+            Provider orange= (Provider) new Orange();
             orange.addService(InternetRecharge.getInstance());
             return orange;
         }
-        else{
-            Provider eti= (Provider) Etisalat.getInstance();
+        else if(option==4){
+            Provider eti= (Provider) new Etisalat();
             eti.addService(InternetRecharge.getInstance());
             return eti;
         }
+        return null;
     }
 }

@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class Database {
     static private Database instance=null;
-    admin myAdmin;
+    admin myAdmin=new admin();
     ArrayList<User> users=new ArrayList<User>();
     ArrayList<service> services=new ArrayList<service>();
     String generalDiscountData="added General Discount 0%";
     ArrayList<String> discountsDescriptions=new ArrayList<String>();
+
     //wow
     //the bank gave me the cards database
     //cool!!!
@@ -29,19 +30,6 @@ public class Database {
         generalDiscount.registerObserver(service);
     }
 
-    public void showServices(){
-        for(int i=0;i<services.size();i++){
-            System.out.println(i+"- "+services.get(i).getDescription()+" Costs: "+services.get(i).getCost()+" EGP, Cost after discounts: "+services.get(i).getCostAfterDiscounts()+" EGP");
-        }
-
-    }
-    public void showMatchingServices(String s){
-        for(int i=0;i<services.size();i++){
-            if(services.get(i).description.contains(s)){
-                System.out.println(i+"- "+services.get(i).getDescription()+" Costs: "+services.get(i).getCost()+" EGP, Cost after discounts: "+services.get(i).getCostAfterDiscounts()+" EGP");
-            }
-        }
-    }
     public void addGeneralDiscountDiscription(double discount){
         generalDiscountData=("added General Discount "+discount*100+"%");
     }
