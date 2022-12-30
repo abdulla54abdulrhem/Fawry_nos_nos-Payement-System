@@ -52,8 +52,8 @@ public class User extends UserAbstract implements SubjectUser{
     }
 
     //todo:make the pay function with abdullah
-    public boolean pay(int id,int mainServicesNumber,int serviceTypeNumber){
-        return customerController.pay(this,mainServicesNumber,serviceTypeNumber);
+    public boolean pay(int id){
+        return customerController.pay(this,id);
     }
 
 //    public void startUserFunctions(){

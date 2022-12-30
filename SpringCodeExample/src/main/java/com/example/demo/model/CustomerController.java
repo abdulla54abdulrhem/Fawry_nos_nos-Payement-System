@@ -20,28 +20,14 @@ public class CustomerController {
         return Database.getInstance().discountsDescriptions;
     }
     public ArrayList<service> getServices(){return Database.getInstance().services;}
-    public boolean pay(User user,int mainServicesNumber,int serviceTypeNumber ){
-        ServiceFactory servicefactory;
-        service ser;
-        ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();// ChooseMainServicesDisplay();
-
-        //getting objects from factories
-        servicefactory=serviceTypeFactory.chooseMainService(mainServicesNumber);
-        if(servicefactory==null){
-            return false;
-        }
-        ser=servicefactory.chooseService(serviceTypeNumber);
-        if(ser==null){
-            return false;
-        }
-
+    public boolean pay(User user,int id ){
 
         //working with service
         double moneyBefore=user.wallet.getBalance();
-        if(ser.pay(user)){
+        if(Database.getInstance().services.get(id).pay(user)){
             double moneyAfter=user.wallet.getBalance();
             //important: make function getCost (because of discounts)
-            user.transactions.add(new Transaction(user.email,ser.getDescription(),moneyBefore-moneyAfter));
+            user.transactions.add(new Transaction(user.email,Database.getInstance().services.get(id).getDescription(),moneyBefore-moneyAfter));
             return true;
         }
         return false;

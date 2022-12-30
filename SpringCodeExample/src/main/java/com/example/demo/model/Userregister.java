@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
 public class Userregister {
-    private  String username;
-    private  String email;
-    private  String password;
+    private String username;
+    private String email;
+    private String password;
+
 
     public void setUsername(String username) {
         this.username = username;

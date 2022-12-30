@@ -17,7 +17,31 @@ public class Database {
     public DiscountSubject generalDiscount=new GeneralDiscount();
     public DiscountSubject specificDiscount=new SpecificDiscount();
     private Database(){
-        intiallizeDataBaseWithServices();
+        //this function intiallizes the database with the services
+        ServiceFactory servicefactory;
+        service ser;
+        ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();
+        int i=0;
+        while (true){
+            i++;
+            servicefactory=serviceTypeFactory.chooseMainService(i);
+            if(servicefactory==null){
+                break;
+            }
+            int j=0;
+            while (true){
+                j++;
+                ser=servicefactory.chooseService(j);
+                if(ser==null){break;}
+                addService(ser);
+            }
+        }
+        int id=0;
+        for (service s:this.services) {
+            s.id=id;
+            id++;
+        }
+
     }
     public static Database getInstance() {
         if(instance==null){
@@ -47,25 +71,5 @@ public class Database {
         }
     }
 
-    public void intiallizeDataBaseWithServices(){
-        //this function intiallizes the database with the services
-        ServiceFactory servicefactory;
-        service ser;
-        ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();
-        int i=0;
-        while (true){
-            i++;
-            servicefactory=serviceTypeFactory.chooseMainService(i);
-            if(servicefactory==null){
-                break;
-            }
-            int j=0;
-            while (true){
-                j++;
-                ser=servicefactory.chooseService(j);
-                if(ser==null){break;}
-                    addService(ser);
-            }
-        }
-    }
+
 }

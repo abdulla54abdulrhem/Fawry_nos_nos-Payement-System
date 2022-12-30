@@ -10,11 +10,14 @@ import com.example.demo.model.*;
 @RestController
 @RequestMapping("/User")
 public class UserController {
-    private User user = new User();
+    //do not fuckin initialize this shit object
+    private User user;
     //sign up us
     @PostMapping("/sign_up")
     public Response sign_up(@RequestBody Userregister user1)
     {
+        user=new User();
+        System.out.println(user1.getEmail()+"  "+user1.getPassword());
         Response responde = new Response();
         if(this.user.register(user1.getUsername(),user1.getEmail(), user1.getPassword()))
         {
@@ -34,6 +37,7 @@ public class UserController {
     @PostMapping("/sign_in")
     public Response sign_in(@RequestBody Login user1)
     {
+        user=new User();
         Response responde = new Response();
         if(this.user.login(user1.getEmail(),user1.getPassword()))
         {
@@ -54,6 +58,7 @@ public class UserController {
     @GetMapping("/getallservices")
     public ArrayList<service> getalllservices()
     {
+        user=new User();
         System.out.println("in getAllServices ");
         return  this.user.getServices();
     }
@@ -63,6 +68,7 @@ public class UserController {
     @GetMapping("/getalldiscounts")
     public ArrayList<String> getalldiscounts()
     {
+        user=new User();
         System.out.println("in getAllDiscounts ");
         return this.user.getDiscounts();
     }
@@ -71,8 +77,10 @@ public class UserController {
     @PostMapping("/Useservice")
     public Response use_Service(@RequestBody UseService user)
     {
+        this.user=new User();
+        this.user.login()
         Response respone = new Response();
-        if(this.user.pay(user.getId(),user.getMainServicesNumber(),user.getServiceTypeNumber()))
+        if(this.user.pay(user.getId()))
         {
             System.out.println("Service is Done Successfully");
             respone.setStatus(true);

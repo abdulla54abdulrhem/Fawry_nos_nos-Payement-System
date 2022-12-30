@@ -8,6 +8,7 @@ public abstract class service implements Observer{
 	String description="";
 	double discountGeneral=0;
 	double discountSpecific=0;
+	public int id;
 
 	public boolean pay(User user) {
 		// TODO Auto-generated method stub
