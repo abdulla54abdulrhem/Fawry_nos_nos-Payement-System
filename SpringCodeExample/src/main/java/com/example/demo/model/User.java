@@ -20,12 +20,12 @@ public class User extends UserAbstract implements SubjectUser{
     }
     //1
     @Override
-    boolean login(String logingEmail,String logingPassword){
+    public boolean login(String logingEmail, String logingPassword){
 
         return system.login(logingEmail,logingPassword, this);
     }
     //2
-    boolean register(String loginUsername,String loginEmail,String loginPassword){
+    public boolean register(String loginUsername, String loginEmail, String loginPassword){
         return system.register(this,loginUsername,loginEmail,loginPassword);
     }
     //3
@@ -44,6 +44,7 @@ public class User extends UserAbstract implements SubjectUser{
         return customerController.getDiscounts();
     }
 
+    public  ArrayList<service> getServices(){return customerController.getServices();}
     //7
     public void makeRefundRequest(String refundDescription,int money){
         RefundRequest refund=new RefundRequest(this,refundDescription,money);
@@ -51,7 +52,7 @@ public class User extends UserAbstract implements SubjectUser{
     }
 
     //todo:make the pay function with abdullah
-    boolean pay(int id,int mainServicesNumber,int serviceTypeNumber){
+    public boolean pay(int id,int mainServicesNumber,int serviceTypeNumber){
         return customerController.pay(this,mainServicesNumber,serviceTypeNumber);
     }
 

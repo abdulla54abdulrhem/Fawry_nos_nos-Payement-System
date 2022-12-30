@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.util.ArrayList;
+import java.util.RandomAccess;
 
 public class CustomerController {
 
@@ -18,6 +19,7 @@ public class CustomerController {
     public ArrayList<String> getDiscounts(){
         return Database.getInstance().discountsDescriptions;
     }
+    public ArrayList<service> getServices(){return Database.getInstance().services;}
     public boolean pay(User user,int mainServicesNumber,int serviceTypeNumber ){
         ServiceFactory servicefactory;
         service ser;

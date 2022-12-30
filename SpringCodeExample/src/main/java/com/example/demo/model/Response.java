@@ -5,7 +5,7 @@ public class Response <T>{
     private String message;
     public T object;
 
-    public boolean isStatus() {
+    public boolean isStatus(boolean b) {
         return status;
     }
 
