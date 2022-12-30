@@ -22,18 +22,19 @@ public class UsersAuthSystem {
     }
     boolean register(User user,String username,String email,String password){
             for (UserAbstract u:Database.getInstance().users) {
-                if(email.equals(u.email)||password.equals(u.password)){
-                    user.email=email;
-                    user.password=password;
-                    user.username=username;
-                    user.ThisId=User.ids;
-                    User.ids=User.ids+1;
-                    System.out.println("registerd as "+user.username);
-                    Database.getInstance().users.add(user);
-                    return true;
+                if(email.equals(u.email)||username.equals(u.username)){
+                    {
+                        return false;
+                    }
                 }
             }
-           return false;
-
+            user.email=email;
+            user.password=password;
+            user.username=username;
+            user.ThisId=User.ids;
+            User.ids=User.ids+1;
+            System.out.println("registerd as "+user.username);
+            Database.getInstance().users.add(user);
+            return true;
     }
 }

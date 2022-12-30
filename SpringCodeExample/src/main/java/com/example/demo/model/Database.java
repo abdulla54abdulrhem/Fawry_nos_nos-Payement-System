@@ -38,7 +38,7 @@ public class Database {
         generalDiscountData=("added General Discount "+discount*100+"%");
     }
     public void addSpecificDiscountDescription(String description,double discount){
-        discountsDescriptions.add("Added discount to: "+description+" "+discount*100+"%");
+        discountsDescriptions.add("Added discount to: "+description+" "+discount*100+"%" );
     }
     public void showDiscounts(){
         System.out.println(generalDiscountData);

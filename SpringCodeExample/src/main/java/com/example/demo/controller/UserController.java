@@ -16,7 +16,6 @@ public class UserController {
     public Response sign_up(@RequestBody Userregister user1)
     {
         Response responde = new Response();
-        System.out.print(user1.getEmail() + " " + user1.getPassword());
         if(this.user.register(user1.getUsername(),user1.getEmail(), user1.getPassword()))
         {
             System.out.print("User Signed Up successfully");
@@ -38,13 +37,13 @@ public class UserController {
         Response responde = new Response();
         if(this.user.login(user1.getEmail(),user1.getPassword()))
         {
-            System.out.print("User logged in successfully");
+            System.out.println("User logged in successfully");
             responde.setStatus(true);
             responde.setMessage("User logged in successfully");
         }
         else
         {
-            System.out.print("Log in failed");
+            System.out.println("Log in failed");
             responde.setStatus(false);
             responde.setMessage("User Sign in failed Because you Enter Email or Password is wrong");
         }

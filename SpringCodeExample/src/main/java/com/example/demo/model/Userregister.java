@@ -1,31 +1,31 @@
 package com.example.demo.model;
 
 public class Userregister {
-    private  String Username;
-    private  String Email;
-    private  String Password;
+    private  String username;
+    private  String email;
+    private  String password;
 
     public void setUsername(String username) {
-        this.Username = username;
+        this.username = username;
     }
 
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
 
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
 
     public String getUsername() {
-        return this.Username;
+        return this.username;
     }
 
     public String getEmail() {
-        return this.Email;
+        return this.email;
     }
 
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
 }
