@@ -40,7 +40,11 @@ public class main {
         //creating the only admin in database
 //        Display display=new startDisplay();
         Database.getInstance().myAdmin=new admin();
+        CustomerController customerController=new CustomerController();
 
+        for (String dis:customerController.search(".")) {
+            System.out.println(dis);
+        }
         //actual start of our program
 //        while(true){
 //            int option= display.displayOption();

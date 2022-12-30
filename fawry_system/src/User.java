@@ -1,4 +1,16 @@
 
+
+
+/*
+* service{
+* login(data){
+* objectUser
+* obj.login(data);
+* (this)
+* }
+* }
+*
+* */
 import java.util.ArrayList;
 import java.util.Scanner;
 
