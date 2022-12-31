@@ -13,6 +13,11 @@ public class User extends UserAbstract implements SubjectUser{
     ServiceTypeFactory serviceTypeFactory=new ServiceTypeFactory();
     ServiceFactory servicefactory;
     service ser;
+    //now we make 3 arrays of the transactions we need to keep about every user
+    //at every transaction done for the user, we just add to those appropriate array
+    public ArrayList<String>paymentTransactions=new ArrayList<>();
+    public ArrayList<String>refundTransactions=new ArrayList<>();
+    public ArrayList<String>addToWalletTransactions=new ArrayList<>();
     Scanner sc=new Scanner(System.in);
     public User(){
         //getting the admin from database (the user object needs him to send refund requests)
@@ -33,8 +38,12 @@ public class User extends UserAbstract implements SubjectUser{
     //4
     //todo:make the credit card thing
     public boolean addMoney(double craditCardBalance,double money){
-        if(wallet.addMoneyByCreditCard(craditCardBalance,money))
-             return true;
+        if(wallet.addMoneyByCreditCard(craditCardBalance,money)) {
+            //here we add successful add to wallet transaction
+            Transaction t=new Transaction(username,"Succssfull add to wallet transaction",money);
+            addToWalletTransactions.add(t.getInformaion());
+            return true;
+        }
         else
             return false;
     }
@@ -51,6 +60,9 @@ public class User extends UserAbstract implements SubjectUser{
     //7
     public void makeRefundRequest(String refundDescription,double money){
         RefundRequest refund=new RefundRequest(this,refundDescription,money);
+        //now we make refund request transaction to refund transaction array
+
+        refundTransactions.add(new Transaction(username,"Refund Request "+refundDescription,money).getInformaion());
         notifyObserver(refund);
     }
 

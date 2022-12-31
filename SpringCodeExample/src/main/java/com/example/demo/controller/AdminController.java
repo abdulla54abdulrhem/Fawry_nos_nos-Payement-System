@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {
@@ -86,6 +88,63 @@ public class AdminController {
         else{
             res.setMessage("The id of request doesn't exist or the admin is not logged in");
             res.setStatus(false);
+        }
+        return res;
+    }
+    //list transactions
+    //according to the requirments we want first to select the user
+    //then we select whether we want to list his payment , add to wallat, refund transactions log
+    //so we make 3 links one for the payment one for the add to wallet and one for refund
+    //we pass the id of the index of the user in the database in the json file
+    @PostMapping("/getPayment")
+    public Response getPayment(@RequestBody UserIndxForJson userIndxForJson){
+        Response res=new Response();
+        ArrayList<String>transactions;
+        transactions=adminService.getPaymentTransactions(userIndxForJson.getIndx());
+        if(transactions==null)
+        {
+            res.setMessage("the id of the user is out of range");
+            res.setStatus(false);
+        }
+        else{
+            res.setMessage("Payment transactions of the user is get successfully");
+            res.setStatus(true);
+            res.object=transactions;
+        }
+        return res;
+    }
+    @PostMapping("/getRefunds")
+    public Response getRefunds(@RequestBody UserIndxForJson userIndxForJson){
+        System.out.println(userIndxForJson.getIndx());
+        Response res=new Response();
+        ArrayList<String>transactions;
+        transactions=adminService.getRefundTransactions(userIndxForJson.getIndx());
+        if(transactions==null)
+        {
+            res.setMessage("the id of the user is out of range");
+            res.setStatus(false);
+        }
+        else{
+            res.setMessage("Refund transactions of the user is get successfully");
+            res.setStatus(true);
+            res.object=transactions;
+        }
+        return res;
+    }
+    @PostMapping("/getAddToWallet")
+    public Response getAddToWallet(@RequestBody UserIndxForJson userIndxForJson){
+        Response res=new Response();
+        ArrayList<String>transactions;
+        transactions=adminService.getAddToWalletTransactions(userIndxForJson.getIndx());
+        if(transactions==null)
+        {
+            res.setMessage("the id of the user is out of range");
+            res.setStatus(false);
+        }
+        else{
+            res.setMessage("Add to wallet transactions of the user is get successfully");
+            res.setStatus(true);
+            res.object=transactions;
         }
         return res;
     }

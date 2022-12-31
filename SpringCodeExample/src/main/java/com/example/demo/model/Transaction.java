@@ -8,9 +8,7 @@ public class Transaction {
         this.userEmail=userEmail;
         this.cost=cost;
     }
-    public void getInformaion(){
-        System.out.println("Transaction description: "+service_description);
-        System.out.println("Made by:" +userEmail);
-        System.out.println("Cost: "+cost);
+    public String getInformaion(){
+        return ("Transaction description: "+service_description)+" "+ ("Made by:" +userEmail)+" " +("Cost: "+cost);
     }
 }

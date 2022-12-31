@@ -30,7 +30,9 @@ public class CustomerController {
         if(Database.getInstance().services.get(id).pay(user)){
             double moneyAfter=user.wallet.getBalance();
             //important: make function getCost (because of discounts)
-            user.transactions.add(new Transaction(user.email,Database.getInstance().services.get(id).getDescription(),moneyBefore-moneyAfter));
+            //now we add a succusseful payment transaction data to user paymentTransaction arrayList
+            Transaction t=new Transaction(user.username, "Successfull payment "+Database.getInstance().services.get(id).getDescription(),moneyBefore-moneyAfter);
+            user.paymentTransactions.add(t.getInformaion());
             return true;
         }
         return false;

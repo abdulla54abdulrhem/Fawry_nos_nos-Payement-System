@@ -37,8 +37,14 @@ public class admin extends UserAbstract implements ObserverAdmin {
         for (RefundRequest request:this.refundRequests) {
             if(request.id==id){
                 if(acceptRefund){
+                    //we add a successful refund request Transaction to the user refundTransactions array
+                    Transaction t=new Transaction(request.user.username,"Accepted refund Request",request.whereIsMyMoney);
+                    request.user.refundTransactions.add(t.getInformaion());
                     request.user.wallet.addMoney(request.whereIsMyMoney);
                 }
+                //here we add unsucessful refund request transaction to the user refunTransaction array
+                Transaction t=new Transaction(request.user.username,"Rejected refund Request",request.whereIsMyMoney);
+                request.user.refundTransactions.add(t.getInformaion());
                 refundRequests.remove(request);
                 return true;
             }

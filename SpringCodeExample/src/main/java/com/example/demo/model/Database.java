@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Database {
     static private Database instance=null;
     public admin myAdmin=new admin();
-    ArrayList<User> users=new ArrayList<User>();
+    public ArrayList<User> users=new ArrayList<User>();
     public ArrayList<service> services=new ArrayList<service>();
     String generalDiscountData="added General Discount 0%";
     ArrayList<String> discountsDescriptions=new ArrayList<String>();

@@ -65,4 +65,31 @@ public class AdminServieImp implements AdminService{
         }
         return false;
     }
+    public ArrayList<String> getPaymentTransactions(int userIndx){
+        if(database.users.size()<=userIndx){
+            //the user indx is wrong (out of range)
+            return null;
+        }
+        else{
+            return database.users.get(userIndx).paymentTransactions;
+        }
+    }
+    public ArrayList<String> getRefundTransactions(int userIndx){
+        if(database.users.size()<=userIndx){
+            //the user indx is wrong (out of range)
+            return null;
+        }
+        else{
+            return database.users.get(userIndx).refundTransactions;
+        }
+    }
+    public ArrayList<String> getAddToWalletTransactions(int userIndx){
+        if(database.users.size()<=userIndx){
+            //the user indx is wrong (out of range)
+            return null;
+        }
+        else{
+            return database.users.get(userIndx).addToWalletTransactions;
+        }
+    }
 }
