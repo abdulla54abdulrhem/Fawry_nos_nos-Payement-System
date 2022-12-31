@@ -16,7 +16,6 @@ public class UserController {
     public Response sign_up(@RequestBody Userregister user1)
     {
         user=new User();
-        System.out.println(user1.getEmail()+"  "+user1.getPassword());
         Response responde = new Response();
         if(this.user.register(user1.getUsername(),user1.getEmail(), user1.getPassword()))
         {
@@ -124,6 +123,30 @@ public class UserController {
 
         }
         return respone;
-
+    }
+    @PostMapping("/addtowallet")
+    public Response add_money_to_wallet(@RequestBody addToWallet add)
+    {
+        Response respone=new Response();
+        this.user=new User();
+        if(!(this.user.login(add.getEmail(), add.getPassword()))){
+            System.out.println("Mission Failed Because you have wrong email or password");
+            respone.setStatus(false);
+            respone.setMessage("Mission Failed Because you have wrong email or password");
+            return respone;
+        }
+        if(user.addMoney(add.getCraditCardBalance(),add.getMoney()))
+        {
+            respone.setStatus(true);
+            respone.setMessage("Money Added Successfully");
+            System.out.println("Money Added Successfully");
+        }
+        else
+        {
+            respone.setStatus(false);
+            respone.setMessage("You don't have Enough Money in Your Cradit Card");
+            System.out.println("You don't have Enough Money in Your Cradit Card");
+        }
+        return respone;
     }
 }

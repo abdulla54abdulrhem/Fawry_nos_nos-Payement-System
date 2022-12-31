@@ -44,7 +44,6 @@ public class admin extends UserAbstract implements ObserverAdmin {
             }
         }
         return false;
-
     }
     //todo: remove this function
 //    void startAdminFunctions(){

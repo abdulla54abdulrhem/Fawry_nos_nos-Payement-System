@@ -32,8 +32,11 @@ public class User extends UserAbstract implements SubjectUser{
     public double showCurrentBalance(){return wallet.getBalance();}
     //4
     //todo:make the credit card thing
-    public void addMoney(double money){
-        wallet.addMoney(money);
+    public boolean addMoney(double craditCardBalance,double money){
+        if(wallet.addMoneyByCreditCard(craditCardBalance,money))
+             return true;
+        else
+            return false;
     }
     //5
     public ArrayList<String> search(String word){
@@ -129,7 +132,10 @@ public class User extends UserAbstract implements SubjectUser{
             observerAdmin.notifyAdmin(r);
         }
     }
-
+    public double getWalletMoney()
+    {
+        return this.wallet.getBalance();
+    }
     @Override
     public void addRefundRequest() {
 
