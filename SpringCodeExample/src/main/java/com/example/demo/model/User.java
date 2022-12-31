@@ -29,15 +29,15 @@ public class User extends UserAbstract implements SubjectUser{
         return system.register(this,loginUsername,loginEmail,loginPassword);
     }
     //3
-    double showCurrentBalance(){return wallet.getBalance();}
+    public double showCurrentBalance(){return wallet.getBalance();}
     //4
     //todo:make the credit card thing
     public void addMoney(double money){
         wallet.addMoney(money);
     }
     //5
-    public void search(String word){
-        customerController.search(word);
+    public ArrayList<String> search(String word){
+        return customerController.search(word);
     }
     //6
     public ArrayList<String> getDiscounts(){

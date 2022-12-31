@@ -100,4 +100,30 @@ public class UserController {
         }
         return  respone;
     }
+
+    @PostMapping("/search")
+    public ArrayList<String> sign_in(@RequestBody searchData data)
+    {
+        this.user=new User();
+        return user.search(data.getWord());
+    }
+
+    @PostMapping("/showWalletBalance")
+    public Response showWalletBalance(@RequestBody Login user1)
+    {
+        Response respone=new Response();
+        this.user=new User();
+        if(user.login(user1.getEmail(),user1.getPassword())){
+            System.out.println("ok user can see his money");
+            respone.setStatus(true);
+            respone.setMessage("your money:"+this.user.showCurrentBalance());
+        }else {
+            System.out.println("wrong, user can not see his money(wrong login data)");
+            respone.setStatus(false);
+            respone.setMessage("wrong user data or user does not exist");
+
+        }
+        return respone;
+
+    }
 }
