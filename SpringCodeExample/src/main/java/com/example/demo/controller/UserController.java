@@ -149,4 +149,20 @@ public class UserController {
         }
         return respone;
     }
+    @PostMapping("/refundRequest")
+    public Response refund_request(@RequestBody refund r)
+    {
+        Response respone=new Response();
+        this.user=new User();
+        if(!(this.user.login(r.getEmail(), r.getPassword()))){
+            System.out.println("Mission Failed Because you have wrong email or password");
+            respone.setStatus(false);
+            respone.setMessage("Mission Failed Because you have wrong email or password");
+            return respone;
+        }
+        user.addRefundRequest(r.getDescription(),r.getMoney());
+        respone.setStatus(true);
+        respone.setMessage("Request Refund Added Successfully");
+        return  respone;
+    }
 }

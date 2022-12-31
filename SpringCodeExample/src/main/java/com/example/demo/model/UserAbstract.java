@@ -30,7 +30,7 @@ public abstract class UserAbstract {
     String username;
 
     UsersAuthSystem system=new UsersAuthSystem();
-    public UserAbstract(){
-    }
+    public UserAbstract(){}
     abstract boolean login(String logingEmail, String logingPassword);
+
 }

@@ -49,7 +49,7 @@ public class User extends UserAbstract implements SubjectUser{
 
     public  ArrayList<service> getServices(){return customerController.getServices();}
     //7
-    public void makeRefundRequest(String refundDescription,int money){
+    public void makeRefundRequest(String refundDescription,double money){
         RefundRequest refund=new RefundRequest(this,refundDescription,money);
         notifyObserver(refund);
     }
@@ -58,62 +58,6 @@ public class User extends UserAbstract implements SubjectUser{
     public boolean pay(int id){
         return customerController.pay(this,id);
     }
-
-//    public void startUserFunctions(){
-//
-//        while (true){
-//            int option1=5;
-//            if(option1==1){
-//                //
-//                //showing current balance
-//                System.out.println("User Balance: "+showCurrentBalance());
-//            }
-//            else if(option1==2){
-//                //
-//                //adding money via credit card
-//                addMoney(55);
-//            }
-//            else if(option1==3){
-//                //showing services
-//                search("hi");
-//            }
-//            else if(option1==4){
-//                //controller needed
-//                //showing discounts
-//                System.out.println(getDiscounts());
-//            }
-//            else if(option1==5){
-//                //make refund request
-//                makeRefundRequest("hi",0);
-//            }
-//            else if(option1==6){
-//                // paying for a service
-////                servicefactory=serviceTypeFactory.chooseMainService();
-////                ser=servicefactory.chooseService();
-//                double moneyBefore=wallet.getBalance();
-//                if(ser.pay(this)){
-//                    double moneyAfter=wallet.getBalance();
-//                    System.out.println("success\n current balance="+wallet.getBalance());
-//                    //important: make function getCost (because of discounts)
-//                    transactions.add(new Transaction(this.email,ser.description,moneyBefore-moneyAfter));
-//                    transactions.get(transactions.size()-1).getInformaion();
-//                }else {
-//                    System.out.println("failed, no enough balance\n(if you want to buy via credit card ,just use it to add money to the wallet)\nneeded money: "+ser.cost);
-//
-//                }
-//
-//
-//            }else if(option1==7){
-//                // going back to start display (choose to be admin or user)
-//                return;
-//            }
-//        }
-//
-//    }
-
-
-
-
 
 //doing the observer pattern four functions
     @Override
@@ -132,12 +76,13 @@ public class User extends UserAbstract implements SubjectUser{
             observerAdmin.notifyAdmin(r);
         }
     }
+
+    @Override
+    public void addRefundRequest(String description,double money) {
+        this.makeRefundRequest(description,money);
+    }
     public double getWalletMoney()
     {
         return this.wallet.getBalance();
-    }
-    @Override
-    public void addRefundRequest() {
-
     }
 }

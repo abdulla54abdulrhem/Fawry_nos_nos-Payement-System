@@ -5,7 +5,7 @@ public class RefundRequest {
     public User user;
     int id;
     double whereIsMyMoney;
-    public RefundRequest(User user,String refundDescription,int whereIsMyMoney){
+    public RefundRequest(User user,String refundDescription,double whereIsMyMoney){
         this.user=user;
         this.refundDescription=refundDescription;
         this.whereIsMyMoney= whereIsMyMoney;
