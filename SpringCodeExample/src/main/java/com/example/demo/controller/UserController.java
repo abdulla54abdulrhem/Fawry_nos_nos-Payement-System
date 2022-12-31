@@ -10,7 +10,6 @@ import com.example.demo.model.*;
 @RestController
 @RequestMapping("/User")
 public class UserController {
-    //do not fuckin initialize this shit object
     private User user;
     //sign up us
     @PostMapping("/sign_up")
@@ -78,8 +77,15 @@ public class UserController {
     public Response use_Service(@RequestBody UseService user)
     {
         this.user=new User();
-        this.user.login()
         Response respone = new Response();
+        if(!(this.user.login(user.getEmail(), user.getPassword()))){
+            System.out.println("Mission Failed Because you have wrong email or password");
+            respone.setStatus(false);
+            respone.setMessage("Mission Failed Because you have wrong email or password");
+            return respone;
+        }
+
+
         if(this.user.pay(user.getId()))
         {
             System.out.println("Service is Done Successfully");

@@ -11,4 +11,9 @@ public class MobileRecharge extends service {
         }
         return instance;
     }
+
+    @Override
+    public double getCost() {
+        return this.cost;
+    }
 }

@@ -11,4 +11,9 @@ public class InternetRecharge extends service {
         }
         return instance;
     }
+
+    @Override
+    public double getCost() {
+        return this.cost;
+    }
 }

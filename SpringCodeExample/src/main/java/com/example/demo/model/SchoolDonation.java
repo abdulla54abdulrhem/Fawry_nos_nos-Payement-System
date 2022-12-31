@@ -11,4 +11,9 @@ public class SchoolDonation extends service {
         }
         return instance;
     }
+
+    @Override
+    public double getCost() {
+        return this.cost;
+    }
 }

@@ -13,4 +13,8 @@ public class HospitalDonation extends service {
         return instance;
     }
 
+    @Override
+    public double getCost() {
+        return this.cost;
+    }
 }

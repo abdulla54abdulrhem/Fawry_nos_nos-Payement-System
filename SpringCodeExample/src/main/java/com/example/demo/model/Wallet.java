@@ -5,7 +5,7 @@ public class Wallet {
     creditCard card=new creditCard();
     private double Balance;
     public Wallet(){
-        Balance=0;
+        Balance=333;
     }
     public double getBalance(){
         return this.Balance;

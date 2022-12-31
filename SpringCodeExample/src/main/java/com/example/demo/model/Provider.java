@@ -7,10 +7,15 @@ public abstract class Provider extends service {
     }
     // we override the following methods
     public double getCostAfterDiscounts(){
-        return this.cost-(this.cost*this.discountGeneral+this.cost*discountSpecific)+theService.getCostAfterDiscounts();
+        return this.getCost()-(this.cost*this.discountGeneral+this.cost*discountSpecific)+theService.getCostAfterDiscounts();
     }
     @Override
     public String getDescription(){
         return this.description+" "+theService.description;
+    }
+
+    @Override
+    public double getCost() {
+        return this.cost+this.theService.getCost();
     }
 }

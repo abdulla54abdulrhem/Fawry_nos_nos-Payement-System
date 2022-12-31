@@ -24,6 +24,9 @@ public class CustomerController {
 
         //working with service
         double moneyBefore=user.wallet.getBalance();
+        System.out.println("money:" + user.wallet.getBalance());
+        System.out.println("get this money:"+ Database.getInstance().services.get(id).getCost());
+
         if(Database.getInstance().services.get(id).pay(user)){
             double moneyAfter=user.wallet.getBalance();
             //important: make function getCost (because of discounts)

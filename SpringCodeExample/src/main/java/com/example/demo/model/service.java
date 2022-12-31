@@ -3,7 +3,7 @@ package com.example.demo.model;
 import java.math.*;
 
 public abstract class service implements Observer{
-	double cost = 0;
+	protected double cost = 0;
 	boolean cashOnDelivery=false;
 	String description="";
 	double discountGeneral=0;
@@ -27,9 +27,7 @@ public abstract class service implements Observer{
 	public void updateSpecificDiscount(double discount){
 		this.discountSpecific=discount;
 	}
-	public double getCost(){
-		return this.cost;
-	}
+	public abstract double getCost();
 	public double getCostAfterDiscounts(){return this.cost-(this.cost*this.discountGeneral+this.cost*discountSpecific);}
 	public String getDescription(){
 		return this.description;
