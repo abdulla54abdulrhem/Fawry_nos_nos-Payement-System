@@ -3,12 +3,13 @@ package com.example.demo.model;
 import java.math.*;
 
 public abstract class service implements Observer{
+	public int id;
 	protected double cost = 0;
 	boolean cashOnDelivery=false;
 	String description="";
 	double discountGeneral=0;
 	double discountSpecific=0;
-	public int id;
+
 
 	public boolean pay(User user) {
 		// TODO Auto-generated method stub
@@ -21,6 +22,11 @@ public abstract class service implements Observer{
 		}
 
 	}
+
+	public int getId() {
+		return id;
+	}
+
 	public void updateDiscount(double discount){
 		this.discountGeneral=discount;
 	}

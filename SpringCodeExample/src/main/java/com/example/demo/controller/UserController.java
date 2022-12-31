@@ -58,7 +58,7 @@ public class UserController {
     {
         user=new User();
         System.out.println("in getAllServices ");
-        return  this.user.getServices();
+        return  this.user.showServices();
     }
 
 

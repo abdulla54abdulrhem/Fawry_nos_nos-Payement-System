@@ -4,11 +4,13 @@ public class AnsOfRequestJson {
     private int id;
     private int answer;
 
-    public void setId(int id) {
+    public void setid(int id) {
         this.id = id;
     }
+    AnsOfRequestJson(){
 
-    public void setAnswer(int answer) {
+    }
+    public void setanswer(int answer) {
         this.answer = answer;
     }
 

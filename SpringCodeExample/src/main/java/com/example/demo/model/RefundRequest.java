@@ -1,11 +1,17 @@
 package com.example.demo.model;
 public class RefundRequest {
+    int id;
     static int StaticID=0;
     public String refundDescription=null;
     public User user;
-    int id;
+
     double whereIsMyMoney;
-    public RefundRequest(User user,String refundDescription,double whereIsMyMoney){
+
+    public int getId() {
+        return id;
+    }
+
+    public RefundRequest(User user, String refundDescription, double whereIsMyMoney){
         this.user=user;
         this.refundDescription=refundDescription;
         this.whereIsMyMoney= whereIsMyMoney;

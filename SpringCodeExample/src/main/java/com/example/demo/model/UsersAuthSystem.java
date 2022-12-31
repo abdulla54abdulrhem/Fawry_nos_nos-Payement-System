@@ -15,6 +15,9 @@ public class UsersAuthSystem {
                     current.username=u.username;
                     current.ThisId=u.ThisId;
                     Database.getInstance().users.add(current);
+                    current.refundTransactions=u.refundTransactions;
+                    current.paymentTransactions=u.paymentTransactions;
+                    current.addToWalletTransactions=u.addToWalletTransactions;
                     return true;
                 }
             }

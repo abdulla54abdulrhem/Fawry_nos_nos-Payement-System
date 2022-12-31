@@ -79,6 +79,7 @@ public class AdminController {
     //answer the refund request
     @PostMapping("/AnswerRefund")
     public Response anwerRefund(AnsOfRequestJson ans){
+        System.out.println("id: "+ans.getId()+"   "+ans.getAnswer()+"     "+9);
         Response res=new Response();
         if(adminService.answerRefundRequest(ans.getId(),ans.getAnswer()))
         {
@@ -98,6 +99,7 @@ public class AdminController {
     //we pass the id of the index of the user in the database in the json file
     @PostMapping("/getPayment")
     public Response getPayment(@RequestBody UserIndxForJson userIndxForJson){
+        System.out.println("idx:  "+userIndxForJson.getIndx());
         Response res=new Response();
         ArrayList<String>transactions;
         transactions=adminService.getPaymentTransactions(userIndxForJson.getIndx());
@@ -115,7 +117,7 @@ public class AdminController {
     }
     @PostMapping("/getRefunds")
     public Response getRefunds(@RequestBody UserIndxForJson userIndxForJson){
-        System.out.println(userIndxForJson.getIndx());
+        System.out.println("idx:  "+userIndxForJson.getIndx());
         Response res=new Response();
         ArrayList<String>transactions;
         transactions=adminService.getRefundTransactions(userIndxForJson.getIndx());
@@ -133,6 +135,7 @@ public class AdminController {
     }
     @PostMapping("/getAddToWallet")
     public Response getAddToWallet(@RequestBody UserIndxForJson userIndxForJson){
+        System.out.println("idx:  "+userIndxForJson.getIndx());
         Response res=new Response();
         ArrayList<String>transactions;
         transactions=adminService.getAddToWalletTransactions(userIndxForJson.getIndx());

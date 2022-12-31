@@ -41,10 +41,12 @@ public class admin extends UserAbstract implements ObserverAdmin {
                     Transaction t=new Transaction(request.user.username,"Accepted refund Request",request.whereIsMyMoney);
                     request.user.refundTransactions.add(t.getInformaion());
                     request.user.wallet.addMoney(request.whereIsMyMoney);
+                }else {
+                    //here we add unsucessful refund request transaction to the user refunTransaction array
+
+                    request.user.refundTransactions.add(new Transaction(request.user.username,"Rejected refund Request",request.whereIsMyMoney).getInformaion());
                 }
-                //here we add unsucessful refund request transaction to the user refunTransaction array
-                Transaction t=new Transaction(request.user.username,"Rejected refund Request",request.whereIsMyMoney);
-                request.user.refundTransactions.add(t.getInformaion());
+
                 refundRequests.remove(request);
                 return true;
             }

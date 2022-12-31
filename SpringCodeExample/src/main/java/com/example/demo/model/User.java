@@ -56,7 +56,7 @@ public class User extends UserAbstract implements SubjectUser{
         return customerController.getDiscounts();
     }
 
-    public  ArrayList<service> getServices(){return customerController.getServices();}
+    public  ArrayList<service> showServices(){return customerController.getServices();}
     //7
     public void makeRefundRequest(String refundDescription,double money){
         RefundRequest refund=new RefundRequest(this,refundDescription,money);

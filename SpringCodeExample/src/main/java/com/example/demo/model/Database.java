@@ -17,6 +17,7 @@ public class Database {
     public DiscountSubject generalDiscount=new GeneralDiscount();
     public DiscountSubject specificDiscount=new SpecificDiscount();
     private Database(){
+        discountsDescriptions.add(generalDiscountData);
         //this function intiallizes the database with the services
         ServiceFactory servicefactory;
         service ser;
@@ -59,17 +60,20 @@ public class Database {
     }
 
     public void addGeneralDiscountDiscription(double discount){
+        discountsDescriptions.remove(generalDiscountData);
         generalDiscountData=("added General Discount "+discount*100+"%");
+        discountsDescriptions.add(generalDiscountData);
     }
     public void addSpecificDiscountDescription(String description,double discount){
+        for (int i = 0; i < discountsDescriptions.size(); i++) {
+            if(discountsDescriptions.get(i).contains(description)){
+                discountsDescriptions.remove(i);
+                break;
+            }
+        }
         discountsDescriptions.add("Added discount to: "+description+" "+discount*100+"%" );
     }
-    public void showDiscounts(){
-        System.out.println(generalDiscountData);
-        for(String dis:discountsDescriptions){
-            System.out.println(dis);
-        }
-    }
+
 
 
 }

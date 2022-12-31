@@ -31,8 +31,7 @@ public class CustomerController {
             double moneyAfter=user.wallet.getBalance();
             //important: make function getCost (because of discounts)
             //now we add a succusseful payment transaction data to user paymentTransaction arrayList
-            Transaction t=new Transaction(user.username, "Successfull payment "+Database.getInstance().services.get(id).getDescription(),moneyBefore-moneyAfter);
-            user.paymentTransactions.add(t.getInformaion());
+            user.paymentTransactions.add(new Transaction(user.username, "Successfull payment "+Database.getInstance().services.get(id).getDescription(),moneyBefore-moneyAfter).getInformaion());
             return true;
         }
         return false;
