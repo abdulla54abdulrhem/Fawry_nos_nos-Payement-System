@@ -1,18 +1,18 @@
 {
 	"info": {
-		"_postman_id": "747ceaf8-161e-4f74-b0c7-9a0d75524fbf",
-		"name": "user APIs",
+		"_postman_id": "4e3c8a58-5fc2-4b01-bc94-ec3c152d17b8",
+		"name": "admin APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "sign up",
+			"name": "login as admin",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\r\n    {\r\n    \"username\":\"ahmed\",\r\n    \"email\":\"ahmed@gmail.com\",\r\n    \"password\":\"gg wp\"\r\n    }\r\n",
+					"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,64 +20,28 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/User/sign_up",
+					"raw": "http://localhost:8080/Admin/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"User",
-						"sign_up"
+						"Admin",
+						"login"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "sign in",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "getAllServices",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/User/getallservices",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"User",
-						"getallservices"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all discounts",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "pay a service",
+			"name": "add General Discount",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ahmed@gmail.com\",\r\n    \"password\":\"gg wp\",\r\n    \"id\":4\r\n}",
+					"raw": "{\r\n    \"discount\":50\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,36 +49,28 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/User/Useservice",
+					"raw": "http://localhost:8080/Admin/addGeneralDiscount",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"User",
-						"Useservice"
+						"Admin",
+						"addGeneralDiscount"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "search Services",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "show wallet balance",
+			"name": "add specific Discount",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ahmed@gmail.com\",\r\n    \"password\":\"gg wp\"\r\n}",
+					"raw": "{\r\n    \"discount\":50,\r\n    \"indexOfService\":1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,33 +78,153 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/User/showWalletBalance",
+					"raw": "http://localhost:8080/Admin/addSpecificDiscount",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"User",
-						"showWalletBalance"
+						"Admin",
+						"addSpecificDiscount"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "add  to wallet",
+			"name": "get refund requests",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Admin/RefundRequests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Admin",
+						"RefundRequests"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "user refund request",
+			"name": "Answer Refund Request",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"answer\":1\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Admin/AnswerRefund",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Admin",
+						"AnswerRefund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show get add to wallet user request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"indx\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Admin/getAddToWallet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Admin",
+						"getAddToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user payment transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"indx\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Admin/getPayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Admin",
+						"getPayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show answered refunds for user indx",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"indx\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Admin/getRefunds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Admin",
+						"getRefunds"
+					]
+				}
 			},
 			"response": []
 		}
