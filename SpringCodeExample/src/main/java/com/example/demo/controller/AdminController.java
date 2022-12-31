@@ -78,7 +78,7 @@ public class AdminController {
     }
     //answer the refund request
     @PostMapping("/AnswerRefund")
-    public Response anwerRefund(AnsOfRequestJson ans){
+    public Response anwerRefund(@RequestBody AnsOfRequestJson ans){
         System.out.println("id: "+ans.getId()+"   "+ans.getAnswer()+"     "+9);
         Response res=new Response();
         if(adminService.answerRefundRequest(ans.getId(),ans.getAnswer()))
