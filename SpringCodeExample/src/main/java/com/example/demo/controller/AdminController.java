@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.ClassesForJson.*;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.AdminServieImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.model.*;
 
 import java.util.ArrayList;
 

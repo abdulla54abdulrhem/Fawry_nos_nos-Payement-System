@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.ClassesForJson.*;
+import com.example.demo.model.SevicePackage.service;
+import com.example.demo.model.UserandAdmin.User;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import com.example.demo.model.*;
+
 @RestController
 @RequestMapping("/User")
 public class UserController {

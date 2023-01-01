@@ -1,5 +1,14 @@
 package com.example.demo.model;
 
+import com.example.demo.model.ObserverPatternPackage.GeneralDiscount;
+import com.example.demo.model.ObserverPatternPackage.SpecificDiscount;
+import com.example.demo.model.FactoryPackage.ServiceFactory;
+import com.example.demo.model.FactoryPackage.ServiceTypeFactory;
+import com.example.demo.model.ObserverPatternPackage.DiscountSubject;
+import com.example.demo.model.SevicePackage.service;
+import com.example.demo.model.UserandAdmin.User;
+import com.example.demo.model.UserandAdmin.admin;
+
 import java.util.ArrayList;
 
 public class Database {
@@ -8,7 +17,7 @@ public class Database {
     public ArrayList<User> users=new ArrayList<User>();
     public ArrayList<service> services=new ArrayList<service>();
     String generalDiscountData="added General Discount 0%";
-    ArrayList<String> discountsDescriptions=new ArrayList<String>();
+    public ArrayList<String> discountsDescriptions=new ArrayList<String>();
 
     //wow
     //the bank gave me the cards database
